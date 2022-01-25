@@ -1,0 +1,15 @@
+{
+  // https://juejin.cn/post/6930549887402672135
+  // https://www.jianshu.com/p/b0ec870ddfdf
+  "compilerOptions": {
+    // "target": "es6",
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*"]
+}
