@@ -11,16 +11,24 @@ setTimeout(() => {
   title.value = "888";
 }, 2000);
 
-
-
 onMounted(() => {
-  $on(bus, "changeName", (msg) => {
+  // console.log(Object.getOwnPropertyDescriptors(import.meta), '=====');
+  const changeName = 'changeName'
+  // const changeName = ''
+
+  const cb = (msg) => {
     title.value = msg;
-  });
+  }
+
+  // $on(bus, changeName, cb);
+  $once(bus, changeName, cb);
+
+ 
+  // const vm = $off(bus, changeName,cb );
+  // console.log(vm, '======vm');
 });
 onBeforeUnmount(() => {
 })
-
 
 </script>
 

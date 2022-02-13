@@ -4,6 +4,7 @@ console.log('eventRegistryMap: ', eventRegistryMap);
 
 function getRegistry(instance) {
   let events = eventRegistryMap.get(instance)
+  console.log('events: getRegistry', events);
   if (!events) {
     eventRegistryMap.set(instance, (events = Object.create(null)))
   }
@@ -17,9 +18,12 @@ export function $on(instance, event, fn) {
     event.forEach((e) => $on(instance, e, fn))
   } else {
     const events = getRegistry(instance)
+    // console.log('events: ', events);
+    // console.log('events: ', JSON.parse(JSON.stringify(events)));
     // console.log('events:222 ', events[event]);
     ;(events[event] || (events[event] = [])).push(fn)
   }
+  // console.log('eventRegistryMap: on', eventRegistryMap);
   return instance
 }
 
@@ -35,6 +39,7 @@ export function $once(instance, event, fn) {
 
 export function $off(instance, event, fn) {
   const vm = instance
+  // debugger
   // all
   if (!event) {
     eventRegistryMap.set(instance, Object.create(null))
@@ -47,23 +52,32 @@ export function $off(instance, event, fn) {
   }
   // specific event
   const events = getRegistry(instance)
+  // console.log('events: =====', JSON.parse(JSON.stringify(events)));
+  console.log('events: =====', events);
   const cbs = events[event]
+  // console.log('cbs: ', JSON.parse(JSON.stringify(cbs)));
+  console.log( cbs, 'cbs: ',);
   if (!cbs) {
     return vm
   }
+
+  // console.log(fn, '=====fn');
   if (!fn) {
     events[event] = undefined
     return vm
   }
+ 
   events[event] = cbs.filter((cb) => !(cb === fn || cb.fn === fn))
+  console.log('events:------123 ', events);
   return vm
 }
 
 //  $emit(bus, 'tabs_activename', this.activeName)
 export function $emit(instance, event, ...args) {
+  // console.log('args: ', args);
   instance && instance.$emit && instance.$emit(event, ...args);
   const cbs = getRegistry(instance)[event]
-  console.log('cbs: ', cbs);
+  // console.log('cbs: ', cbs);
   if (cbs) {
     cbs.map((cb) => cb.apply(instance, args))
   }

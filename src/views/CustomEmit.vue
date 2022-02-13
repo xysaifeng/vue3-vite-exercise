@@ -8,6 +8,8 @@
 <script>
 import bus from "@/utils/bus";
 import { $on, $off, $once, $emit } from "@/utils/utils";
+import { personnelInfo } from "./options";
+
 export default {
   data() {
     return {
@@ -15,11 +17,12 @@ export default {
     }
   },
   mounted() {
+    // console.log(personnelInfo, "====222");
   },
   methods: {
     clickBtn() {
-      console.log('===========click');
-      $emit(bus, 'changeName', 'jack')
+      const name = ~~(Math.random() * 1000)
+      $emit(bus, 'changeName', name)
     }
   }
 }
