@@ -1,10 +1,10 @@
 
 const eventRegistryMap = new WeakMap()
-console.log('eventRegistryMap: ', eventRegistryMap);
+// console.log('eventRegistryMap: ', eventRegistryMap);
 
 function getRegistry(instance) {
   let events = eventRegistryMap.get(instance)
-  console.log('events: getRegistry', events);
+  // console.log('events: getRegistry', events);
   if (!events) {
     eventRegistryMap.set(instance, (events = Object.create(null)))
   }

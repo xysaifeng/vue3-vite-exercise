@@ -2,6 +2,7 @@
   <div>
     <div>{{age}}</div>
   <div><button @click="clickBtn">click</button></div>
+  <Child :list='list'></Child>
   </div>
 </template>
 
@@ -9,11 +10,16 @@
 import bus from "@/utils/bus";
 import { $on, $off, $once, $emit } from "@/utils/utils";
 import { personnelInfo } from "./options";
+import Child from './components/Child.vue'
 
 export default {
+  components: {
+    Child
+  },
   data() {
     return {
-      age: '22'
+      age: '22',
+      list: []
     }
   },
   mounted() {

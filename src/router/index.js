@@ -13,6 +13,16 @@ const routes = [
     name: 'CustomEmit',
     component: () => import('@/views/CustomEmit.vue')
   },
+  {
+    path: '/sheet',
+    name: 'Sheet',
+    component: () => import('@/views/Sheet.vue')
+  },
+  {
+    path: '/scss-demo',
+    name: 'ScssDemo',
+    component: () => import('@/views/ScssDemo/index.vue')
+  },
 ]
 
 const router = createRouter({
