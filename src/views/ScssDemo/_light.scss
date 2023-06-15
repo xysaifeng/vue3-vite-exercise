@@ -1,0 +1,25 @@
+$_color: #ff6666 !default;
+
+$red: #f00 !default;
+$black: #000 !default;
+$green: #0f0 !default;
+
+
+@mixin  setColor {
+  color: $_color;
+}
+
+.theme-text {
+  color: $_color;
+  background: burlywood;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.footer {
+  border: 1px solid $_color;
+}
+
+.a {
+  color: #f00;
+}

@@ -1,0 +1,5 @@
+$c-color: pink !default;
+
+@mixin setBg {
+  background-color: $c-color;
+}

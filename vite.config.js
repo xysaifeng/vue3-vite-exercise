@@ -2,24 +2,38 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
+// 尤大推荐的神器unplugin-vue-components,解放双手!以后再也不用呆呆的手动引入(组件,ui(Element-ui)库,vue hooks等)
+// https://juejin.cn/post/7012446423367024676
+
 import AutoImport from 'unplugin-auto-import/vite'
 
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import ElementPlus from 'unplugin-element-plus/vite'
 
-
+console.log('cwd: ', process.cwd());
 export default defineConfig({
   resolve: {
     // extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
-    alias: { 
+    alias: {
       '@': resolve(__dirname, 'src'),
       "~/": `${resolve(__dirname, "src")}/`,
-     }
+    }
   },
+  // server: {
+  //   host: '0.0.0.0',
+  //   port: 3001,
+  //   strictPort: true,
+  // },
   plugins: [
     vue(),
     AutoImport({
+      // 目标文件
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
       imports: [
         'vue',
         {
@@ -34,7 +48,12 @@ export default defineConfig({
     }),
 
     Components({
+      // 指定组件位置，默认是src/components
+      dirs: ['src/components'],
+      // 配置文件生成位置
+      // dts: 'src/components.d.ts'
       dts: true,
+      // ui库解析器
       resolvers: [
         ElementPlusResolver({
           importStyle: 'sass',

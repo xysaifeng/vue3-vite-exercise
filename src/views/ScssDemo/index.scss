@@ -1,0 +1,33 @@
+// @use 'sass:meta';
+
+// $_color: red !default;
+// $_private: false !default;
+
+// @function geturl($url) {
+//   @return $url;
+// }
+
+// @each $theme in ('dark', 'light') {
+//   [data-theme='#{$theme}'] {
+//     @include meta.load-css(geturl($theme), $with: ('_color': $_color))
+//   }
+// }
+
+@forward 'light' with($red: blue);
+@use 'library';
+
+@include library.configure(
+  $black: #222,
+  $border-radius: 0.1rem
+);
+
+@include library.styles;
+
+
+.foot {
+  @extend .footer
+}
+
+.main {
+  @extend .a;
+}

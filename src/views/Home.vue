@@ -16,16 +16,24 @@
       <TestDrawer v-model:visible="visible" :list="list" />
     </p>
     <p>
-      <el-select v-model="value" filterable placeholder="Select" :filter-method='fm'>
+      <el-select
+        v-model="value"
+        filterable
+        placeholder="Select"
+        :filter-method="fm"
+      >
         <el-option
           v-for="(item, i) in options"
           :key="item.value"
           :label="item.label"
           :value="item.value"
         >
-        <span>{{ item.label }} {{(i+1) * (10+i)}}</span>
+          <span>{{ item.label }} {{ (i + 1) * (10 + i) }}</span>
         </el-option>
       </el-select>
+    </p>
+    <p>
+      <span class="color-span">scssdemo global color </span>
     </p>
   </div>
 </template>
@@ -44,11 +52,7 @@ import {
   Menu,
 } from "@element-plus/icons-vue";
 
-const state = reactive({
-  visible: false,
-  list: null,
-});
-const { visible, list } = toRefs(state);
+import logo from "@/assets/logo.png?url";
 
 // import {
 //   // ElButton,
@@ -76,6 +80,15 @@ const { proxy } = getCurrentInstance();
 // console.log('proxy.$route:222 ', proxy.$nextTick);
 
 // import CustomEmit from './CustomEmit.vue'
+console.log("logo: ", logo);
+const url = new URL("../assets/logo.png", import.meta.url).href;
+console.log("url: ", url);
+console.log(import.meta.env);
+const state = reactive({
+  visible: false,
+  list: null,
+});
+const { visible, list } = toRefs(state);
 
 const close = () => {
   //  messages.closeAll('jeelsl')
@@ -152,17 +165,30 @@ const o = [
     value: "Option5",
     label: "Option5",
   },
-]
+];
 const options = ref(o);
 
 function fm(query) {
-  console.log('query: ', query);
+  console.log("query: ", query);
   // console.log(options.value);
-  if(!query) return (options.value = o)
-  options.value = options.value.filter(item => item.label.includes(query))
-  console.log('options.value: ', options.value);
-
+  if (!query) return (options.value = o);
+  options.value = options.value.filter((item) => item.label.includes(query));
+  console.log("options.value: ", options.value);
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// @use './ScssDemo/dark.scss' as c;
+@use "./ScssDemo/dark.scss" with (
+  $_color: red,
+  $_private: false
+);
+
+.color-span {
+  // color: $m-color; // error $m-color不存在
+  //  @include roundeds; // error
+
+  // @include c.setColor;
+  @include dark.setColor;
+}
+</style>

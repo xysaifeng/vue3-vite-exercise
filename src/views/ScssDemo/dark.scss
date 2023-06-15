@@ -1,0 +1,41 @@
+@use 'sass:meta';
+
+$_color: green !default;
+$_private: true !default;
+
+
+
+@mixin setColor {
+  color: $_color;
+  _private: $_private;
+}
+
+$base-color:#000 !default;
+
+p {
+  background: $base-color;
+  color: #fff;
+}
+
+@function geturl($theme) {
+  @return $theme + '.scss';
+}
+
+// @each $theme in ('dark') {
+//   [data-theme='#{$theme}'] {
+//     // @debug $theme;
+//     // @include meta.load-css($theme)
+//     // $u: geturl($theme);
+//     // @debug $u;
+//     // @include meta.load-css('./_light.scss');
+//     @include meta.load-css("light.scss");
+//     // color: red;
+//   }
+// }
+
+.theme-text {
+  color: $_color;
+  font-size: 16px;
+  font-weight: bolder;
+  background: #fff;
+}

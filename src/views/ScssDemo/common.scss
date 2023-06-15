@@ -1,0 +1,29 @@
+$color: red;
+$black: #000;
+
+$border-position-all: all !default;
+$border-default-size: 1px !default;
+$border-default-pattern: solid !default;
+$border-default-color: $black !default;
+
+@mixin addBorder($border-position: $border-position-all, $border-size: $border-default-size, $border-pattern: $border-default-pattern, $border-color:$border-default-color) {
+  $color: $border-color;
+  @debug $color;
+  @if $border-position == $border-position-all {
+    border: $border-size $border-pattern $border-color; 
+  } @else {
+    border-#{$border-position}: $border-size
+    $border-pattern $border-color;
+  }
+}
+
+.example {
+  color: $color;
+}
+
+@mixin updateColor {
+  
+}
+.p {
+  color: $color;
+}

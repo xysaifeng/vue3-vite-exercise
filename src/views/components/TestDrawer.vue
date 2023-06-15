@@ -23,7 +23,7 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["update:visible"]);
-console.log(JSON.stringify( props.list), '==============111');
+// console.log(JSON.stringify( props.list), '==============111');
 watch(
   () => props.list,
   (val) => {
@@ -32,7 +32,7 @@ watch(
 );
 
 onMounted(()=>{
-  console.log('onMounted==========1');
+  // console.log('onMounted==========1');
 })
 
 function close() {

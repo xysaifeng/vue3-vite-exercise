@@ -1,0 +1,42 @@
+
+// @forward './a.scss' with ($c-color: green);
+// @forward './a.scss' with ($c-color: green); // error: This module was already loaded, so it can't be configured using "with".
+// @forward './a.scss'  show $c-color with ($c-color: green); // error ???
+// @forward './a.scss' show $c-color; // ok 可以和row2同时存在 ???
+// @forward './a.scss' show $c-color, setBg; // ok 可以和row2同时存在 ？？
+@forward './a.scss' hide $c-color; // error 对外不暴露$c-color
+@forward './a.scss' hide setBg; // error 对外不暴露setBg
+
+// @forward  './b.scss'; // error Two forwarded modules both define a mixin named setBg.
+@forward  './b.scss' as b-*; // ok
+
+// @forward 'setBg';// error
+
+@use 'sass:meta';
+
+// $-c-font-size: 12px ;// Private variable 
+$c-font-size: 12px ;
+// $c-font-size: 12px !default;
+
+@mixin setFontSize {
+  //被转发的文件的成员在当前文档中不可访问，也没有创建命名空间
+  // color: $c-color;// Undefined variable.// a.scss中的变量不能在当前模块中使用.
+  font-size: $c-font-size;
+  // @debug $c-font-size;
+  // @error $c-font-size; // 程序报错
+  // @warn $c-font-size; // 程序报错
+  
+}
+
+@function updateFontSize($size) {
+  $c-font-size: $size;
+  // @debug $c-font-size;
+  @return $c-font-size;
+}
+
+
+// @each $theme in ('dark', 'light') {
+//   [data-theme='#{$theme}'] {
+//     @include meta.load-css($theme)
+//   }
+// }

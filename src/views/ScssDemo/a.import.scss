@@ -1,0 +1,9 @@
+@forward 'corners' as c-*;
+
+$c-red: #f55; // 在 @import 前定义全局变量，可配置模块成员
+
+// @import 'corners';
+
+.foot {
+  color: $c-red;
+}

@@ -10,9 +10,8 @@ import bus from "@/utils/bus";
 // import { ElMessage } from 'element-plus'
 // console.log('ElMessage: ', ElMessage);
 
-
-const zIndex =  3000;
-const size = 'small';
+const zIndex = 3000;
+const size = "small";
 
 const title = ref("v3");
 setTimeout(() => {
@@ -50,6 +49,18 @@ onBeforeUnmount(() => {});
       </li>
       <li class="nav">
         <router-link to="/scss-demo">scss-demo</router-link>
+      </li>
+      <li class="nav">
+        <router-link to="/TestState">TestState</router-link>
+      </li>
+      <li class="nav">
+        <router-link to="/compressFile">compressFile</router-link>
+      </li>
+      <li class="nav">
+        <router-link to="/form">form</router-link>
+      </li>
+      <li class="nav">
+        <router-link to="/storage">storage</router-link>
       </li>
     </ul>
     <router-view :title="title"></router-view>

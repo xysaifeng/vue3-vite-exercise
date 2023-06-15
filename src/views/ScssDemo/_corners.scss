@@ -1,0 +1,14 @@
+$radius: 4px;
+$_radius2: 8px; // 私有模块,使用scss可以轻松地定义私有成员，私有成员命名以-或_开头。
+
+$red: #f00 !default; // 模块只会被加载一次，所以就算在第一次 @import 模块后更改了配置(即使是间接的)，再次 @import 模块也不会使用修改的配置。
+
+@mixin roundeds {
+  // border-radius: $radius;
+  border-radius: $_radius2;
+}
+
+
+.a {
+  color: $red;
+}

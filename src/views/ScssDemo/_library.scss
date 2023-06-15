@@ -1,0 +1,43 @@
+
+// https://zhuanlan.zhihu.com/p/413294236
+// 如果你发现自己想一次配置很多变量，传递一个 map 作为配置，或者在模块加载后更新配置，
+// 那么考虑写一个 mixin 来设置变量，再写另一个 mixin 来注入你的样式。
+
+
+$-black: #000;
+$-border-radius: 0.25rem;
+$-box-shadow: null;
+
+@function -box-shadow() {
+  @return $-box-shadow or (0 0.5rem 1rem rgba($-black, 0.15));
+}
+
+@mixin configure($black: null, $border-radius: null, $box-shadow: null) {
+  @if($black) {
+    $-black: $black !global;
+  }
+
+  @if($border-radius) {
+    $-border-radius: $border-radius !global;
+  }
+
+  @if($box-shadow) {
+    $-box-shadow: $box-shadow !global;
+  }
+  // @if($black) {
+  //   // @debug $black;
+  //   $-black: $black !global;
+  // } @else if($border-radius) {
+  //   @debug  $border-radius;
+  //   $-border-radius: $border-radius !global;
+  // } @else if($box-shadow) {
+  //   $-box-shadow: $box-shadow !global;
+  // }
+}
+
+@mixin  styles {
+  code {
+    border-radius: $-border-radius;
+    box-shadow: -box-shadow();
+  }
+}
