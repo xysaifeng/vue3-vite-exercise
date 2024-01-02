@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import topLevelAwait from "vite-plugin-top-level-await";
 
 // 尤大推荐的神器unplugin-vue-components,解放双手!以后再也不用呆呆的手动引入(组件,ui(Element-ui)库,vue hooks等)
 // https://juejin.cn/post/7012446423367024676
@@ -61,6 +62,10 @@ export default defineConfig({
         })
       ]
     }),
+    topLevelAwait({
+      promiseExportName: '__tla',
+      promiseImportName: i => `__tla_${i}`
+    })
 
     //  Components({
     //   // resolvers: [

@@ -44,6 +44,21 @@ const routes = [
     name: 'Storage',
     component: () => import('@/views/Storage.vue')
   },
+  {
+    path: '/table',
+    name: 'Table',
+    component: () => import('@/views/Table/index.vue')
+  },
+  {
+    path: '/vexTable',
+    name: 'VxeTable',
+    component: () => import('@/views/VxeTable/index.vue')
+  },
+  {
+    path: '/pdf1',
+    name: 'pdf1',
+    component: () => import('@/views/Pdf/index.vue')
+  },
 ]
 
 const router = createRouter({
